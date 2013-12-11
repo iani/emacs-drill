@@ -1,0 +1,8 @@
+#+TITLE: emacs-drill
+
+Learning emacs commands. Uses org-drill flashcard system.  But can also be read as plain text or as html. 
+
+Best to use from emacs org-mode.
+
+See http://orgmode.org/worg/org-contrib/org-drill.html for more.
+
