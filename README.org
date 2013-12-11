@@ -6,3 +6,4 @@ Best to use from emacs org-mode.
 
 See http://orgmode.org/worg/org-contrib/org-drill.html for more.
 
+HTML Version: http://iani.github.io/emacs-drill/
