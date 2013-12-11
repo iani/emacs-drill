@@ -1,0 +1,1880 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>emacs-drill</title>
+<!-- 2013-12-11 Wed 17:42 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="author" content="I Z"/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012  Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">emacs-drill</h1>
+<div id="table-of-contents">
+<h2>Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Editing</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Put exactly one white space at point&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1. Answer</a></li>
+<li><a href="#sec-1-1-2">1.1.2. Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">1.2. Remove all white space around point&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-3">1.3. Open new line at point&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-1-3-1">1.3.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4">1.4. Indent region&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-1-4-1">1.4.1. Answer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Movement / Navigation</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Jump to last capture&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-2-1-1">2.1.1. Answer</a></li>
+<li><a href="#sec-2-1-2">2.1.2. Notes</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2">2.2. Jump to end of sentence&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-2-2-1">2.2.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-3">2.3. Jump to beginning of sentence&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-2-3-1">2.3.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-4">2.4. Jumping to characters, words, lines (3 commands, 3 drill questions:)</a>
+<ul>
+<li><a href="#sec-2-4-1">2.4.1. tips for remembering the jump character/word/line key combinations&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a></li>
+<li><a href="#sec-2-4-2">2.4.2. query-word jump: jump to word starting with character&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a></li>
+<li><a href="#sec-2-4-3">2.4.3. jump to a line visible in any window of the current frame&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a></li>
+<li><a href="#sec-2-4-4">2.4.4. query-char jump&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Searching</a>
+<ul>
+<li><a href="#sec-3-1">3.1. isearch-forward&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-3-1-1">3.1.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-2">3.2. isearch-backward&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-3-2-1">3.2.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-3">3.3. isearch-repeat-forward&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-3-3-1">3.3.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-4">3.4. isearch-repeat-backward&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-3-4-1">3.4.1. Answer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Org Commands</a>
+<ul>
+<li><a href="#sec-4-1">4.1. Copy current node and refile the copy to other location&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-4-1-1">4.1.1. Answer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-5">5. Dired</a>
+<ul>
+<li><a href="#sec-5-1">5.1. Changing files by editing the dired buffer</a>
+<ul>
+<li><a href="#sec-5-1-1">5.1.1. Answer</a></li>
+<li><a href="#sec-5-1-2">5.1.2. Details</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-6">6. Calendar</a>
+<ul>
+<li><a href="#sec-6-1">6.1. Invoking calendar&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-6-1-1">6.1.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-2">6.2. navigating in calendar&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-6-2-1">6.2.1. Answer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-7">7. Input encoding</a>
+<ul>
+<li><a href="#sec-7-1">7.1. Switching input modes (input Umlauts, accents etc)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-7-1-1">7.1.1. Answer</a></li>
+<li><a href="#sec-7-1-2">7.1.2. UCS Character names!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-8">8. Help, Info, Input Methods, Keyboard commands</a>
+<ul>
+<li><a href="#sec-8-1">8.1. Find out which keyboard shortcut corresponds to a given command&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-8-1-1">8.1.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-8-2">8.2. Set input method to different keyboard types (US, German etc)</a>
+<ul>
+<li><a href="#sec-8-2-1">8.2.1. Answer</a></li>
+<li><a href="#sec-8-2-2">8.2.2. More tips: Stop characters from combining</a></li>
+<li><a href="#sec-8-2-3">8.2.3. Listing input methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-9">9. Marking</a>
+<ul>
+<li><a href="#sec-9-1">9.1. Mark Paragraph&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-9-1-1">9.1.1. Answer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-10">10. Visibility, Sparse trees</a>
+<ul>
+<li><a href="#sec-10-1">10.1. Limit visibility to given tree depth&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-10-1-1">10.1.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-10-2">10.2. Search for tags&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-10-2-1">10.2.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-10-3">10.3. Get out of (leave) a sparse tree, and return to full view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-10-3-1">10.3.1. Answer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-11">11. Magit</a>
+<ul>
+<li><a href="#sec-11-1">11.1. Magit status</a>
+<ul>
+<li><a href="#sec-11-1-1">11.1.1. Answer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-12">12. Shells</a>
+<ul>
+<li><a href="#sec-12-1">12.1. e-shell&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-12-1-1">12.1.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-12-2">12.2. bash shell (plain terminal shell)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-12-2-1">12.2.1. Answer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-13">13. Less-known but useful keyboard commands</a>
+<ul>
+<li><a href="#sec-13-1">13.1. What is the command s-e bound to?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-13-1-1">13.1.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-13-2">13.2. Expand selected region&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-13-2-1">13.2.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-13-3">13.3. Org-refile-set-target&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-13-3-1">13.3.1. Answer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-14">14. Prelude commands + tips</a>
+<ul>
+<li><a href="#sec-14-1">14.1. Prelude "daily" tips&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-1-1">14.1.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-2">14.2. Prelude commands&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-2-1">14.2.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-3">14.3. Display a list of all files in the project. With a prefix argument it will clear the cache first.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-3-1">14.3.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-4">14.4. Display a list of all directories in the project. With a prefix argument it will clear the cache first.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-4-1">14.4.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-5">14.5. Display a list of all test files(specs, features, etc) in the project.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-5-1">14.5.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-6">14.6. Run grep on the files in the project.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-6-1">14.6.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-7">14.7. Display a list of all project buffers currently open.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-7-1">14.7.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-8">14.8. Runs multi-occur on all project buffers currently open.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-8-1">14.8.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-9">14.9. Runs interactive query-replace on all files in the projects.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-9-1">14.9.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-10">14.10. Invalidates the project cache (if existing).&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-10-1">14.10.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-11">14.11. Regenerates the projects TAGS file.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-11-1">14.11.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-12">14.12. Kills all project buffers.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-12-1">14.12.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-13">14.13. Opens the root of the project in dired.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-13-1">14.13.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-14">14.14. Shows a list of recently visited project files.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-14-1">14.14.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-15">14.15. Runs ack on the project. Requires the presence of ack-and-a-half.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-15-1">14.15.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-16">14.16. Runs a standard compilation command for your type of project.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-16-1">14.16.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-17">14.17. Runs a standard test command for your type of project.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-17-1">14.17.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-18">14.18. Adds the currently visited to the cache.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-18-1">14.18.1. Answer</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-19">14.19. Display a list of known projects you can switch to.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-14-19-1">14.19.1. Answer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-15">15. Extending, Customizing: Finding+Installing packages</a>
+<ul>
+<li><a href="#sec-15-1">15.1. How to download packages from existing emacs repositories&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-15-1-1">15.1.1. Answer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-16">16. Drills / Learning</a>
+<ul>
+<li><a href="#sec-16-1">16.1. Force review of all cards&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></a>
+<ul>
+<li><a href="#sec-16-1-1">16.1.1. Answer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Editing</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><a id="ID-17A0EDB4-AF7D-40D7-9B37-3826E6EAE4F8" name="ID-17A0EDB4-AF7D-40D7-9B37-3826E6EAE4F8"></a><span class="section-number-3">1.1</span> Put exactly one white space at point&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-1-1">
+
+<p>
+Delete multiple white space around cursor, leaving one space only.
+</p>
+</div>
+<div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> Answer</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+M-SPC
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> Notes</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+Try it here: 
+Multiple        spaces.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><a id="ID-DC0FC29E-C620-41AE-9070-CA82E3A1C344" name="ID-DC0FC29E-C620-41AE-9070-CA82E3A1C344"></a><span class="section-number-3">1.2</span> Remove all white space around point&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-1-2">
+
+<p>
+Remove all white space around point
+</p>
+</div>
+
+<div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Answer</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+M-\
+</p>
+
+<p>
+Note: Contrast this with M-space, which leaves one space. 
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><a id="ID-103108FA-C532-4C8F-8567-CA9D92ED0AD2" name="ID-103108FA-C532-4C8F-8567-CA9D92ED0AD2"></a><span class="section-number-3">1.3</span> Open new line at point&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Open a new line at point and move the rest of the line to the next line.  Leave point at new line.
+</p>
+</div>
+
+
+<div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> Answer</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+C-o
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><a id="ID-D5AE63A6-A89C-4A8F-8F49-3E89D9D2EE99" name="ID-D5AE63A6-A89C-4A8F-8F49-3E89D9D2EE99"></a><span class="section-number-3">1.4</span> Indent region&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-1-4">
+
+<p>
+Indent region by arg characters - or auto-indent according to mode
+</p>
+</div>
+
+<div id="outline-container-sec-1-4-1" class="outline-4">
+<h4 id="sec-1-4-1"><span class="section-number-4">1.4.1</span> Answer</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+C-M-\
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Movement / Navigation</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><a id="ID-F9BAF93F-4BFB-47C9-9ECE-ABD42449A863" name="ID-F9BAF93F-4BFB-47C9-9ECE-ABD42449A863"></a><span class="section-number-3">2.1</span> Jump to last capture&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-2-1">
+
+<p>
+How to jump to the node created with the last capture command?
+</p>
+</div>
+
+<div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> Answer</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+Jump to boomkark <code>org-capture-last-stored</code>, by typing keyboard command C-x r b and then the name of the bookmark.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2"><span class="section-number-4">2.1.2</span> Notes</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+This is different from C-u C-u C-c C-w, which jumps to bookmark <code>org-refile-last-stored</code>.
+</p>
+
+<p>
+It is also different from this:
+</p>
+
+<p>
+C-u C-c c
+Visit the target location of a capture template. You get to select the template in the usual way.  The target location is not necessarily the last location of refile.  The last location may have been at a different date of a date-tree capture, for example.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><a id="ID-471F018B-0DA5-4CA6-901B-79134706B3CD" name="ID-471F018B-0DA5-4CA6-901B-79134706B3CD"></a><span class="section-number-3">2.2</span> Jump to end of sentence&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-2-2">
+
+<p>
+How to jump to end of sentence (marked by . followed by two spaces or other blank mark)?
+</p>
+</div>
+
+<div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> Answer</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+M-e
+</p>
+
+<p>
+Cmpare to C-e and 
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><a id="ID-6F7AEA82-F38E-4D6C-AC58-39CE81A01616" name="ID-6F7AEA82-F38E-4D6C-AC58-39CE81A01616"></a><span class="section-number-3">2.3</span> Jump to beginning of sentence&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-2-3">
+
+<p>
+How to jump to beginning of sentence (marked by . followed by two spaces or other blank mark)?
+</p>
+</div>
+
+<div id="outline-container-sec-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1"><span class="section-number-4">2.3.1</span> Answer</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+M-b
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Jumping to characters, words, lines (3 commands, 3 drill questions:)</h3>
+<div class="outline-text-3" id="text-2-4">
+</div><div id="outline-container-sec-2-4-1" class="outline-4">
+<h4 id="sec-2-4-1"><a id="ID-D38E4B88-FAAA-4EC9-9027-AC2EFDFA34B5" name="ID-D38E4B88-FAAA-4EC9-9027-AC2EFDFA34B5"></a><span class="section-number-4">2.4.1</span> tips for remembering the jump character/word/line key combinations&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h4>
+<div class="outline-text-4" id="text-2-4-1">
+
+<p>
+Here are some tips for remembering the jump character/word/line key combinations.
+</p>
+</div>
+
+<ol class="org-ol"><li>Answer<br/><div class="outline-text-5" id="text-2-4-1-1">
+<p>
+Each of the jump character combinations consists of two characters typed in rapid succession. 
+</p>
+
+<p>
+The first character is always j = jump.
+</p>
+
+<p>
+The second character is one of j k l.  These characters lie next to each other on one line in the standard english keyboard.  So: 
+</p>
+
+<ol class="org-ol">
+<li>jj -&gt; jump to <b>WORD</b> (mnemonic: Words are the first thing to <b>Jump</b> to)
+</li>
+<li>jk -&gt; jump to <b>CHARACTER</b> (mnemonic: <b>k</b> for "K"arachter)
+</li>
+<li>jl -&gt; jump to <b>LINE</b> (mnemonic: <b>l</b> for <b>Line</b> )
+</li>
+</ol>
+</div>
+</li></ol>
+</div>
+<div id="outline-container-sec-2-4-2" class="outline-4">
+<h4 id="sec-2-4-2"><a id="ID-2CB39785-821E-45F6-A7A0-8B818E07AB74" name="ID-2CB39785-821E-45F6-A7A0-8B818E07AB74"></a><span class="section-number-4">2.4.2</span> query-word jump: jump to word starting with character&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h4>
+<div class="outline-text-4" id="text-2-4-2">
+
+<p>
+Jump to word starting with character.
+</p>
+</div>
+
+<ol class="org-ol"><li>Answer<br/><div class="outline-text-5" id="text-2-4-2-1">
+<p>
+j and j pressed fast in that order 
+</p>
+</div>
+</li></ol>
+</div>
+<div id="outline-container-sec-2-4-3" class="outline-4">
+<h4 id="sec-2-4-3"><a id="ID-B4C63A41-4417-4667-A57B-64C4BBA708A4" name="ID-B4C63A41-4417-4667-A57B-64C4BBA708A4"></a><span class="section-number-4">2.4.3</span> jump to a line visible in any window of the current frame&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h4>
+<div class="outline-text-4" id="text-2-4-3">
+
+<p>
+Jump a line visible in any window of the current frame.
+</p>
+</div>
+
+<ol class="org-ol"><li>Answer<br/><div class="outline-text-5" id="text-2-4-3-1">
+<p>
+j and l pressed fast in that order 
+</p>
+</div>
+</li></ol>
+</div>
+<div id="outline-container-sec-2-4-4" class="outline-4">
+<h4 id="sec-2-4-4"><a id="ID-987CC7FD-63A4-4E21-B5F4-CDC95B4FEB1E" name="ID-987CC7FD-63A4-4E21-B5F4-CDC95B4FEB1E"></a><span class="section-number-4">2.4.4</span> query-char jump&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h4>
+<div class="outline-text-4" id="text-2-4-4">
+
+<p>
+Jump to occurences of a character matched by typing that character.
+</p>
+</div>
+
+<ol class="org-ol"><li>Answer<br/><div class="outline-text-5" id="text-2-4-4-1">
+<p>
+j and k pressed fast in that order 
+</p>
+</div>
+</li></ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Searching</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> isearch-forward&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+isearch-forward
+</p>
+</div>
+
+<div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> Answer</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+s-f, C-s
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> isearch-backward&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+isearch-backward
+</p>
+</div>
+
+<div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> Answer</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+c-r
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> isearch-repeat-forward&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+isearch-repeat-forward
+</p>
+</div>
+
+<div id="outline-container-sec-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> Answer</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+s-g
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> isearch-repeat-backward&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+isearch-repeat-backward
+</p>
+</div>
+
+<div id="outline-container-sec-3-4-1" class="outline-4">
+<h4 id="sec-3-4-1"><span class="section-number-4">3.4.1</span> Answer</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<p>
+s-d
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Org Commands</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><a id="ID-1C1B1835-60F5-4535-ABF7-62C1C4288609" name="ID-1C1B1835-60F5-4535-ABF7-62C1C4288609"></a><span class="section-number-3">4.1</span> Copy current node and refile the copy to other location&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-4-1">
+
+<p>
+Copying works like refiling, except that the original note is not
+deleted
+</p>
+</div>
+
+<div id="outline-container-sec-4-1-1" class="outline-4">
+<h4 id="sec-4-1-1"><span class="section-number-4">4.1.1</span> Answer</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<p>
+`C-c M-w     (`org-copy')'
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Dired</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Changing files by editing the dired buffer</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Edit the dired buffer to change file names, move files etc. 
+</p>
+</div>
+
+
+<div id="outline-container-sec-5-1-1" class="outline-4">
+<h4 id="sec-5-1-1"><span class="section-number-4">5.1.1</span> Answer</h4>
+<div class="outline-text-4" id="text-5-1-1">
+<p>
+C-x C-q (dired-toggle-read-only)
+</p>
+
+<p>
+To finish and apply: C-c C-c (wdired-finish-edit)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-1-2" class="outline-4">
+<h4 id="sec-5-1-2"><span class="section-number-4">5.1.2</span> Details</h4>
+<div class="outline-text-4" id="text-5-1-2">
+<p>
+From: <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Wdired.html">https://www.gnu.org/software/emacs/manual/html_node/emacs/Wdired.html</a>
+</p>
+
+<blockquote>
+<p>
+30.17 Editing the Dired Buffer
+</p>
+
+<p>
+Wdired is a special mode that allows you to perform file operations by editing the Dired buffer directly (the “W” in “Wdired” stands for “writable”.) To enter Wdired mode, type C-x C-q (dired-toggle-read-only) while in a Dired buffer. Alternatively, use the ‘Immediate / Edit File Names’ menu item.
+</p>
+
+<p>
+While in Wdired mode, you can rename files by editing the file names displayed in the Dired buffer. All the ordinary Emacs editing commands, including rectangle operations and query-replace, are available for this. Once you are done editing, type C-c C-c (wdired-finish-edit). This applies your changes and switches back to ordinary Dired mode.
+</p>
+
+<p>
+Apart from simply renaming files, you can move a file to another directory by typing in the new file name (either absolute or relative). To mark a file for deletion, delete the entire file name. To change the target of a symbolic link, edit the link target name which appears next to the link name.
+</p>
+
+<p>
+The rest of the text in the buffer, such as the file sizes and modification dates, is marked read-only, so you can't edit it. However, if you set wdired-allow-to-change-permissions to t, you can edit the file permissions. For example, you can change ‘-rw-r&#x2013;r&#x2013;’ to ‘-rw-rw-rw-’ to make a file world-writable. These changes also take effect when you type C-c C-c.
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Calendar</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Invoking calendar&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+Invoking calendar
+</p>
+</div>
+
+<div id="outline-container-sec-6-1-1" class="outline-4">
+<h4 id="sec-6-1-1"><span class="section-number-4">6.1.1</span> Answer</h4>
+<div class="outline-text-4" id="text-6-1-1">
+<p>
+M-x calendar: 3 month calendar with previous, this, next month.
+</p>
+
+<p>
+C-u M-x calendar: 3 month calendar centering on a date entered with interactive choice
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> navigating in calendar&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Commands for navigating in calendar
+</p>
+</div>
+
+<div id="outline-container-sec-6-2-1" class="outline-4">
+<h4 id="sec-6-2-1"><span class="section-number-4">6.2.1</span> Answer</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<p>
+`C-f'
+     Move point one day forward (`calendar-forward-day').
+</p>
+
+<p>
+`C-b'
+     Move point one day backward (`calendar-backward-day').
+</p>
+
+<p>
+`C-n'
+     Move point one week forward (`calendar-forward-week').
+</p>
+
+<p>
+`C-p'
+     Move point one week backward (`calendar-backward-week').
+</p>
+
+<p>
+`M-}'
+     Move point one month forward (`calendar-forward-month').
+</p>
+
+<p>
+`M-{'
+     Move point one month backward (`calendar-backward-month').
+</p>
+
+<p>
+`C-x ]'
+     Move point one year forward (`calendar-forward-year').
+</p>
+
+<p>
+`C-x ['
+     Move point one year backward (`calendar-backward-year').
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Input encoding</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><a id="ID-A09951AD-5D6A-48AD-B30C-0300D94EB6A9" name="ID-A09951AD-5D6A-48AD-B30C-0300D94EB6A9"></a><span class="section-number-3">7.1</span> Switching input modes (input Umlauts, accents etc)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-7-1">
+
+<p>
+How to switch to a different input method?
+</p>
+
+<p>
+For example to input ü ä ö ß? 
+</p>
+</div>
+
+<div id="outline-container-sec-7-1-1" class="outline-4">
+<h4 id="sec-7-1-1"><span class="section-number-4">7.1.1</span> Answer</h4>
+<div class="outline-text-4" id="text-7-1-1">
+<p>
+M-x set-input-method
+For german umlauts and ß, choose for example: german-postfix.  For example ä ü ü ö. ß. Ä Ö Ü. 
+But see also ucs-insert with C-x 8 return and latin postfix or prefix.  
+</p>
+
+<p>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+german-postfix or latin-postfix are the fastest.
+ucs-insert is the most complete but also by far slower because the names of the characters are long and many.
+</p>
+
+<p>
+Description below from: 
+</p>
+
+<p>
+<a href="http://emacs-fu.blogspot.gr/2012/02/special-characters.html">http://emacs-fu.blogspot.gr/2012/02/special-characters.html</a>
+</p>
+
+
+<blockquote>
+<p>
+If you only occasionally need some accented character, input methods like latin-postfix (e" -&gt; ë), latin-prefix ("e -&gt; ë) or TeX (\"e -&gt; ë) are useful. They also tend to annoy me a bit, as they often assume I need an accented character, when all I want is to put a word in quotation marks…
+ucs-insert
+One way to add characters like α, ∞ or ☺ is to use ucs-insert, by default bound to C-x 8 RET. If you know the official Unicode name for a character, you can find it there; note that there's auto-completion and you can use * wild-cards. For the mentioned characters, that would be GREEK SMALL LETTER ALPHA, INFINITY and WHITE SMILING FACE.
+</p>
+
+<p>
+You can also use the Unicode code points; so C-x 8 RET 03b1 RET will insert α as well, since its code point is U+03B1. In case you don't know the code points of Unicode characters, a tool like the Character Map (gucharmap) in Gnome may be useful.
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-sec-7-1-2" class="outline-4">
+<h4 id="sec-7-1-2"><span class="section-number-4">7.1.2</span> UCS Character names!</h4>
+<div class="outline-text-4" id="text-7-1-2">
+<p>
+Here is a link to a list copied from <a href="http://www.columbia.edu/kermit/ucs2.html">http://www.columbia.edu/kermit/ucs2.html</a> :
+</p>
+
+<p>
+<a href="file:///Users/iani2/Dropbox/000WORKFILES/org/personal/reference.html#9E0FD37E-DB50-48C1-A006-A899F7312B71">UCS character names (for UCS input)</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Help, Info, Input Methods, Keyboard commands</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><a id="ID-82BCE382-C5A3-4C43-B01A-00AC54BFF126" name="ID-82BCE382-C5A3-4C43-B01A-00AC54BFF126"></a><span class="section-number-3">8.1</span> Find out which keyboard shortcut corresponds to a given command&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-8-1">
+
+<p>
+Which keyboard helps you find out the keyboard shortcut corresponds to a given command?
+</p>
+</div>
+
+<div id="outline-container-sec-8-1-1" class="outline-4">
+<h4 id="sec-8-1-1"><span class="section-number-4">8.1.1</span> Answer</h4>
+<div class="outline-text-4" id="text-8-1-1">
+<p>
+C-h w (which)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2"><span class="section-number-3">8.2</span> Set input method to different keyboard types (US, German etc)</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+How to change input method?  For example for German Umlauts?
+</p>
+</div>
+
+<div id="outline-container-sec-8-2-1" class="outline-4">
+<h4 id="sec-8-2-1"><span class="section-number-4">8.2.1</span> Answer</h4>
+<div class="outline-text-4" id="text-8-2-1">
+<p>
+Simple: M-x set-input method
+</p>
+
+<p>
+Select from list of available input methods. 
+</p>
+
+<p>
+Extended answer: 
+<a href="http://www.emacswiki.org/emacs/InputMethods">http://www.emacswiki.org/emacs/InputMethods</a>
+</p>
+<blockquote>
+<p>
+Input Methods allow you to enter characters that are not supported by your keyboard.
+</p>
+
+<p>
+‘C-x C-m C-\’ or ‘M-x set-input-method’ or switch to a new input method.
+‘C-h C-\’ or ‘C-h I’ to describe the current input method.
+‘C-\’ to toggle the input method on and off
+Emacs should also work correctly with appropriate XIM input methods under X.
+</p>
+
+<p>
+Possibly the most convenient casual method for inputting unicode characters is the TeXInputMethod, which permits you to enter Unicode characters by typing a \ prefixed sequence reminiscent of TeX. For example, the greek character λ may be entered by typing &lambda;.
+</p>
+
+<p>
+An obsolete way of entering accented characters is iso-accents-mode. These days, you should use the input-method ‘latin-1-prefix’ instead. Both will make accent characters combine with the following characters, so that you can type `” u’ to achieve `ü’, for example.
+</p>
+
+<p>
+An even stranger way of entering accented characters is the C-x 8 keymap. See WritingIsoLatinOne.
+</p>
+
+<p>
+Another way is to use QuotedInsert with ‘C-q’.
+</p>
+
+<p>
+To activate the input method for a specific mode put the following line in your config file:
+</p>
+
+<p>
+(add-hook 'text-mode-hook 'toggle-input-method)
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-sec-8-2-2" class="outline-4">
+<h4 id="sec-8-2-2"><span class="section-number-4">8.2.2</span> More tips: Stop characters from combining</h4>
+<div class="outline-text-4" id="text-8-2-2">
+<p>
+<a href="http://www.gnu.org/software/emacs/manual/html_node/emacs/Input-Methods.html">http://www.gnu.org/software/emacs/manual/html_node/emacs/Input-Methods.html</a>
+</p>
+<blockquote>
+<p>
+Another method, more general but not quite as easy to type, is to use C-\ C-\ between two characters to stop them from combining. This is the command C-\ (toggle-input-method) used twice. See Select Input Method.
+</p>
+
+<p>
+C-\ C-\ is especially useful inside an incremental search, because it stops waiting for more characters to combine, and starts searching for what you have already entered.
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-sec-8-2-3" class="outline-4">
+<h4 id="sec-8-2-3"><span class="section-number-4">8.2.3</span> Listing input methods</h4>
+<div class="outline-text-4" id="text-8-2-3">
+<p>
+M-x list-input-methods
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> Marking</h2>
+<div class="outline-text-2" id="text-9">
+</div><div id="outline-container-sec-9-1" class="outline-3">
+<h3 id="sec-9-1"><a id="ID-BD030B03-FBBF-46F3-8AE1-636CB7A5DF65" name="ID-BD030B03-FBBF-46F3-8AE1-636CB7A5DF65"></a><span class="section-number-3">9.1</span> Mark Paragraph&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-9-1">
+
+<p>
+Which key?
+</p>
+
+<p>
+Hint: Use the command of another mode instead
+</p>
+</div>
+
+<div id="outline-container-sec-9-1-1" class="outline-4">
+<h4 id="sec-9-1-1"><span class="section-number-4">9.1.1</span> Answer</h4>
+<div class="outline-text-4" id="text-9-1-1">
+<p>
+The command is mark-paragraph.
+Per default, it is not bound to any key. 
+</p>
+
+<p>
+In org mode, org-mark-element will work well if the cursor is inside a paragraph.  The command for that is M-h
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> Visibility, Sparse trees</h2>
+<div class="outline-text-2" id="text-10">
+</div><div id="outline-container-sec-10-1" class="outline-3">
+<h3 id="sec-10-1"><a id="ID-E5DDAA6C-2A7A-437A-996D-9BEFC2FF0358" name="ID-E5DDAA6C-2A7A-437A-996D-9BEFC2FF0358"></a><span class="section-number-3">10.1</span> Limit visibility to given tree depth&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-10-1">
+
+<p>
+Limit to given tree depth
+</p>
+</div>
+
+
+<div id="outline-container-sec-10-1-1" class="outline-4">
+<h4 id="sec-10-1-1"><span class="section-number-4">10.1.1</span> Answer</h4>
+<div class="outline-text-4" id="text-10-1-1">
+<p>
+C-number or C-u number followed by shift-tab.  Limits visibility to number depth of tree.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-10-2" class="outline-3">
+<h3 id="sec-10-2"><a id="ID-F00460B6-CAB8-463B-9115-113E8546FD34" name="ID-F00460B6-CAB8-463B-9115-113E8546FD34"></a><span class="section-number-3">10.2</span> Search for tags&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-10-2">
+
+<p>
+<a href="http://orgmode.org/manual/Tag-searches.html">http://orgmode.org/manual/Tag-searches.html</a>
+</p>
+</div>
+
+<div id="outline-container-sec-10-2-1" class="outline-4">
+<h4 id="sec-10-2-1"><span class="section-number-4">10.2.1</span> Answer</h4>
+<div class="outline-text-4" id="text-10-2-1">
+<p>
+<a href="http://orgmode.org/manual/Tag-searches.html">http://orgmode.org/manual/Tag-searches.html</a>
+</p>
+<blockquote>
+<p>
+C-c / m or C-c \     (org-match-sparse-tree)
+Create a sparse tree with all headlines matching a tags/property/TODO search. With a C-u prefix argument, ignore headlines that are not a TODO line. See Matching tags and properties. 
+C-c a m     (org-tags-view)
+Create a global list of tag matches from all agenda files. See Matching tags and properties. 
+C-c a M     (org-tags-view)
+Create a global list of tag matches from all agenda files, but check only TODO items and force checking subitems (see the option org-tags-match-list-sublevels).
+These commands all prompt for a match string which allows basic Boolean logic like ‘+boss+urgent-project1’, to find entries with tags ‘boss’ and ‘urgent’, but not ‘project1’, or ‘Kathy|Sally’ to find entries which are tagged, like ‘Kathy’ or ‘Sally’. The full syntax of the search string is rich and allows also matching against TODO keywords, entry levels and properties. For a complete description with many examples, see Matching tags and properties.
+</p>
+</blockquote>
+
+<p>
+Yet see <a href="http://orgmode.org/manual/Sparse-trees.html">http://orgmode.org/manual/Sparse-trees.html</a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-10-3" class="outline-3">
+<h3 id="sec-10-3"><a id="ID-C4FD13E3-FFB9-4687-875B-6217F0E42D89" name="ID-C4FD13E3-FFB9-4687-875B-6217F0E42D89"></a><span class="section-number-3">10.3</span> Get out of (leave) a sparse tree, and return to full view&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-10-3">
+
+<p>
+Trick question: How to do that? 
+</p>
+
+<p>
+Tip: Use the passe-par-tout.
+</p>
+</div>
+
+<div id="outline-container-sec-10-3-1" class="outline-4">
+<h4 id="sec-10-3-1"><span class="section-number-4">10.3.1</span> Answer</h4>
+<div class="outline-text-4" id="text-10-3-1">
+<p>
+C-c C-c (!)
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> Magit</h2>
+<div class="outline-text-2" id="text-11">
+</div><div id="outline-container-sec-11-1" class="outline-3">
+<h3 id="sec-11-1"><span class="section-number-3">11.1</span> Magit status</h3>
+<div class="outline-text-3" id="text-11-1">
+<p>
+open magit status / choose project
+</p>
+</div>
+
+
+<div id="outline-container-sec-11-1-1" class="outline-4">
+<h4 id="sec-11-1-1"><span class="section-number-4">11.1.1</span> Answer</h4>
+<div class="outline-text-4" id="text-11-1-1">
+<p>
+"Press &lt;C-x g&gt; or &lt;s-m&gt; to run magit-status."
+</p>
+
+<p>
+With C-u prefix: choose git repo from list to run status on. 
+project
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-12" class="outline-2">
+<h2 id="sec-12"><span class="section-number-2">12</span> Shells</h2>
+<div class="outline-text-2" id="text-12">
+</div><div id="outline-container-sec-12-1" class="outline-3">
+<h3 id="sec-12-1"><a id="ID-A2044998-850F-441F-80DD-8DE89D724C6A" name="ID-A2044998-850F-441F-80DD-8DE89D724C6A"></a><span class="section-number-3">12.1</span> e-shell&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-12-1">
+
+<p>
+keyboard command to start e-shell?
+</p>
+</div>
+
+
+<div id="outline-container-sec-12-1-1" class="outline-4">
+<h4 id="sec-12-1-1"><span class="section-number-4">12.1.1</span> Answer</h4>
+<div class="outline-text-4" id="text-12-1-1">
+<p>
+C-x m
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-12-2" class="outline-3">
+<h3 id="sec-12-2"><a id="ID-20CE2FDC-CF84-4CFE-A078-AADD7A3E3C61" name="ID-20CE2FDC-CF84-4CFE-A078-AADD7A3E3C61"></a><span class="section-number-3">12.2</span> bash shell (plain terminal shell)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-12-2">
+
+<p>
+keyboard command to start terminal?
+</p>
+</div>
+
+
+<div id="outline-container-sec-12-2-1" class="outline-4">
+<h4 id="sec-12-2-1"><span class="section-number-4">12.2.1</span> Answer</h4>
+<div class="outline-text-4" id="text-12-2-1">
+<p>
+C-x M-m
+</p>
+
+<p>
+C-c t if in prelude and not in org-mode
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-13" class="outline-2">
+<h2 id="sec-13"><span class="section-number-2">13</span> Less-known but useful keyboard commands</h2>
+<div class="outline-text-2" id="text-13">
+</div><div id="outline-container-sec-13-1" class="outline-3">
+<h3 id="sec-13-1"><a id="ID-D4335B25-8F93-449D-B181-B5AD75444BC5" name="ID-D4335B25-8F93-449D-B181-B5AD75444BC5"></a><span class="section-number-3">13.1</span> What is the command s-e bound to?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-13-1">
+
+<p>
+What is the command s-e bound to? 
+</p>
+</div>
+
+<div id="outline-container-sec-13-1-1" class="outline-4">
+<h4 id="sec-13-1-1"><span class="section-number-4">13.1.1</span> Answer</h4>
+<div class="outline-text-4" id="text-13-1-1">
+<p>
+isearch-yank-kill: Pull string from kill ring into search string.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-13-2" class="outline-3">
+<h3 id="sec-13-2"><a id="ID-7D441D90-4D77-417F-BC8A-F2BD1C9CC4C2" name="ID-7D441D90-4D77-417F-BC8A-F2BD1C9CC4C2"></a><span class="section-number-3">13.2</span> Expand selected region&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-13-2">
+
+<p>
+What kind of region - I do not know yet Must explore this more
+</p>
+</div>
+
+
+<div id="outline-container-sec-13-2-1" class="outline-4">
+<h4 id="sec-13-2-1"><span class="section-number-4">13.2.1</span> Answer</h4>
+<div class="outline-text-4" id="text-13-2-1">
+<p>
+C-= or &#x2026;
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-13-3" class="outline-3">
+<h3 id="sec-13-3"><a id="ID-78B83431-692B-4A73-836A-D765BC368480" name="ID-78B83431-692B-4A73-836A-D765BC368480"></a><span class="section-number-3">13.3</span> Org-refile-set-target&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-13-3">
+
+<p>
+This is a custom meta-command by iz. 
+It sets the target file for refile commands, and removes all others, except the current buffer.
+</p>
+</div>
+
+<div id="outline-container-sec-13-3-1" class="outline-4">
+<h4 id="sec-13-3-1"><span class="section-number-4">13.3.1</span> Answer</h4>
+<div class="outline-text-4" id="text-13-3-1">
+<p>
+C-c t
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14" class="outline-2">
+<h2 id="sec-14"><span class="section-number-2">14</span> Prelude commands + tips</h2>
+<div class="outline-text-2" id="text-14">
+</div><div id="outline-container-sec-14-1" class="outline-3">
+<h3 id="sec-14-1"><a id="ID-4113035D-87F6-48F4-AD6E-0D16D96E8CD1" name="ID-4113035D-87F6-48F4-AD6E-0D16D96E8CD1"></a><span class="section-number-3">14.1</span> Prelude "daily" tips&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-1">
+<p>
+These are all prelude tips from <i>Users/iani2</i>.emacs.d/core/prelude-core.el
+</p>
+
+<p>
+They are in the process of being moved over to separate drill entries in this file.  Please work on these and mark the ones already entered, until all have been entered. 
+</p>
+</div>
+
+<div id="outline-container-sec-14-1-1" class="outline-4">
+<h4 id="sec-14-1-1"><span class="section-number-4">14.1.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-1-1">
+<p>
+They are in the process of being moved over to separate drill entries in this file.  Please work on these and mark the ones already entered, until all have been entered. 
+</p>
+
+
+<p>
+(defvar prelude-tips
+  '(
+</p>
+</div>
+
+<ol class="org-ol"><li><span class="todo TODO">TODO</span> "Press &lt;C-c o&gt; to open a file with external program."<br/></li>
+<li><span class="todo TODO">TODO</span> "Press &lt;C-c p f&gt; or &lt;s-f&gt; to navigate a project's files with ido."<br/></li>
+<li><span class="todo TODO">TODO</span> "Press &lt;C-c p g&gt; or &lt;s-g&gt; to run grep on a project."<br/></li>
+<li><span class="todo TODO">TODO</span> "Press &lt;C-c p s&gt; or &lt;s-p&gt; to switch between projects."<br/></li>
+<li><span class="todo TODO">TODO</span> "Press &lt;C-=&gt; or &lt;s-x&gt; to expand the selected region."<br/></li>
+<li><span class="done DONE">DONE</span> "Press &lt;jj&gt; quickly to jump to the beginning of a visible word."<br/><div class="outline-text-5" id="text-14-1-1-6">
+</div>
+</li>
+
+<li><span class="done DONE">DONE</span> "Press &lt;jk&gt; quickly to jump to a visible character."<br/><div class="outline-text-5" id="text-14-1-1-7">
+</div>
+</li>
+
+<li><span class="done DONE">DONE</span> "Press &lt;jl&gt; quickly to jump to a visible line."<br/><div class="outline-text-5" id="text-14-1-1-8">
+</div>
+</li>
+
+<li><span class="todo TODO">TODO</span> "Press &lt;C-c h&gt; to navigate a project in Helm."<br/></li>
+<li><span class="todo TODO">TODO</span> "Press &lt;C-c g&gt; to search in Google."<br/></li>
+<li><span class="todo TODO">TODO</span> "Press &lt;C-c r&gt; to rename the current buffer and file it's visiting."<br/></li>
+<li><span class="todo TODO">TODO</span> "Press &lt;C-c t&gt; to open a terminal in Emacs."<br/></li>
+<li><span class="todo TODO">TODO</span> "Press &lt;C-c k&gt; to kill all the buffers, but the active one."<br/></li>
+<li><span class="done DONE">DONE</span> "Press &lt;C-x g&gt; or &lt;s-m&gt; to run magit-status."<br/><div class="outline-text-5" id="text-14-1-1-14">
+</div>
+</li>
+
+<li><span class="todo TODO">TODO</span> "Press &lt;C-c D&gt; to delete the current file and buffer."<br/></li>
+<li><span class="todo TODO">TODO</span> "Press &lt;C-c s&gt; to swap two windows."<br/></li>
+<li><span class="todo TODO">TODO</span> "Press &lt;S-RET&gt; or &lt;M-o&gt; to open a new beneath the current one."<br/></li>
+<li><span class="todo TODO">TODO</span> "Press &lt;s-o&gt; to open a line above the current one."<br/></li>
+<li><span class="todo TODO">TODO</span> "Press &lt;C-c C-z&gt; in a Elisp buffer to launch an interactive Elisp shell."<br/></li>
+<li><span class="todo TODO">TODO</span> "Press &lt;C-Backspace&gt; to kill a line backwards."<br/></li>
+<li><span class="todo TODO">TODO</span> "Press &lt;C-S-Backspace&gt; or &lt;s-k&gt; to kill the whole line."<br/></li>
+<li><span class="todo TODO">TODO</span> "Press &lt;f11&gt; to toggle fullscreen mode."<br/></li>
+<li><span class="todo TODO">TODO</span> "Press &lt;f12&gt; to toggle the menu bar."<br/></li>
+<li><span class="todo TODO">TODO</span> "Explore the Tools-&gt;Prelude menu to find out about some of Prelude extensions to Emacs."<br/></li>
+<li><span class="todo TODO">TODO</span> "Access the official Emacs manual by pressing &lt;C-h r&gt;."<br/></li>
+<li><span class="todo TODO">TODO</span> "Visit WikEmacs at <a href="http://wikemacs.org">http://wikemacs.org</a> to find out even more about Emacs."<br/><div class="outline-text-5" id="text-14-1-1-26">
+<p>
+))
+</p>
+</div>
+</li></ol>
+</div>
+</div>
+
+
+<div id="outline-container-sec-14-2" class="outline-3">
+<h3 id="sec-14-2"><a id="ID-9E29718C-3B6F-42FB-ACF7-6CC510CA0C03" name="ID-9E29718C-3B6F-42FB-ACF7-6CC510CA0C03"></a><span class="section-number-3">14.2</span> Prelude commands&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-2">
+
+<p>
+These are all prelude commands from <a href="https://github.com/bbatsov/prelude">https://github.com/bbatsov/prelude</a>
+</p>
+
+<p>
+They are in the process of being moved over to separate drill entries in this file.  Please work on these and mark the ones already entered, until all have been entered. 
+</p>
+</div>
+
+<div id="outline-container-sec-14-2-1" class="outline-4">
+<h4 id="sec-14-2-1"><span class="section-number-4">14.2.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-2-1">
+</div><ol class="org-ol"><li><span class="todo TODO">TODO</span> C-c p f    Display a list of all files in the project. With a prefix argument it will clear the cache first.<br/></li>
+<li><span class="todo TODO">TODO</span> C-c p d    Display a list of all directories in the project. With a prefix argument it will clear the cache first.<br/></li>
+<li>C-c p T    Display a list of all test files(specs, features, etc) in the project.<br/></li>
+<li>C-c p g    Run grep on the files in the project.<br/></li>
+<li>C-c p b    Display a list of all project buffers currently open.<br/></li>
+<li>C-c p o    Runs multi-occur on all project buffers currently open.<br/></li>
+<li>C-c p r    Runs interactive query-replace on all files in the projects.<br/></li>
+<li>C-c p i    Invalidates the project cache (if existing).<br/></li>
+<li>C-c p R    Regenerates the projects TAGS file.<br/></li>
+<li>C-c p k    Kills all project buffers.<br/></li>
+<li>C-c p D    Opens the root of the project in dired.<br/></li>
+<li>C-c p e    Shows a list of recently visited project files.<br/></li>
+<li>C-c p a    Runs ack on the project. Requires the presence of ack-and-a-half.<br/></li>
+<li>C-c p c    Runs a standard compilation command for your type of project.<br/></li>
+<li>C-c p p    Runs a standard test command for your type of project.<br/></li>
+<li>C-c p z    Adds the currently visited to the cache.<br/></li>
+<li>C-c p s    Display a list of known projects you can switch to.<br/></li></ol>
+</div>
+</div>
+<div id="outline-container-sec-14-3" class="outline-3">
+<h3 id="sec-14-3"><a id="ID-2E3E9404-507A-480F-8C79-4F242D0E3C0E" name="ID-2E3E9404-507A-480F-8C79-4F242D0E3C0E"></a><span class="section-number-3">14.3</span> Display a list of all files in the project. With a prefix argument it will clear the cache first.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-3">
+</div>
+
+
+<div id="outline-container-sec-14-3-1" class="outline-4">
+<h4 id="sec-14-3-1"><span class="section-number-4">14.3.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-3-1">
+<p>
+C-c p f    
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14-4" class="outline-3">
+<h3 id="sec-14-4"><a id="ID-88FFD6F6-890E-4650-A83A-65BA79A4339E" name="ID-88FFD6F6-890E-4650-A83A-65BA79A4339E"></a><span class="section-number-3">14.4</span> Display a list of all directories in the project. With a prefix argument it will clear the cache first.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-4">
+
+<p>
+Display a list of all directories
+</p>
+</div>
+<div id="outline-container-sec-14-4-1" class="outline-4">
+<h4 id="sec-14-4-1"><span class="section-number-4">14.4.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-4-1">
+<p>
+C-c p d    
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14-5" class="outline-3">
+<h3 id="sec-14-5"><a id="ID-B53CB751-7855-483C-BEB4-B02969FF7409" name="ID-B53CB751-7855-483C-BEB4-B02969FF7409"></a><span class="section-number-3">14.5</span> Display a list of all test files(specs, features, etc) in the project.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-5">
+
+<p>
+Display a list of all test
+</p>
+</div>
+<div id="outline-container-sec-14-5-1" class="outline-4">
+<h4 id="sec-14-5-1"><span class="section-number-4">14.5.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-5-1">
+<p>
+C-c p T    
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14-6" class="outline-3">
+<h3 id="sec-14-6"><a id="ID-B223256F-8CE8-4266-B6A3-FE61857A27EE" name="ID-B223256F-8CE8-4266-B6A3-FE61857A27EE"></a><span class="section-number-3">14.6</span> Run grep on the files in the project.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-6">
+
+<p>
+Run grep on the files in
+</p>
+</div>
+<div id="outline-container-sec-14-6-1" class="outline-4">
+<h4 id="sec-14-6-1"><span class="section-number-4">14.6.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-6-1">
+<p>
+C-c p g    
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14-7" class="outline-3">
+<h3 id="sec-14-7"><a id="ID-C5A47860-6803-4644-8962-4B314B999100" name="ID-C5A47860-6803-4644-8962-4B314B999100"></a><span class="section-number-3">14.7</span> Display a list of all project buffers currently open.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-7">
+
+<p>
+Display a list of all project
+</p>
+</div>
+<div id="outline-container-sec-14-7-1" class="outline-4">
+<h4 id="sec-14-7-1"><span class="section-number-4">14.7.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-7-1">
+<p>
+C-c p b    
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14-8" class="outline-3">
+<h3 id="sec-14-8"><a id="ID-ACE14C9E-3218-4889-843E-F9991222DFCC" name="ID-ACE14C9E-3218-4889-843E-F9991222DFCC"></a><span class="section-number-3">14.8</span> Runs multi-occur on all project buffers currently open.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-8">
+
+<p>
+Runs multi-occur on all project
+</p>
+</div>
+<div id="outline-container-sec-14-8-1" class="outline-4">
+<h4 id="sec-14-8-1"><span class="section-number-4">14.8.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-8-1">
+<p>
+C-c p o    
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14-9" class="outline-3">
+<h3 id="sec-14-9"><a id="ID-7DDF37AE-4CAB-458C-AF7B-4F861247B262" name="ID-7DDF37AE-4CAB-458C-AF7B-4F861247B262"></a><span class="section-number-3">14.9</span> Runs interactive query-replace on all files in the projects.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-9">
+
+<p>
+Runs interactive query-replace on all
+</p>
+</div>
+<div id="outline-container-sec-14-9-1" class="outline-4">
+<h4 id="sec-14-9-1"><span class="section-number-4">14.9.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-9-1">
+<p>
+C-c p r    
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14-10" class="outline-3">
+<h3 id="sec-14-10"><a id="ID-5D685811-99D9-47D8-8826-766B132AC072" name="ID-5D685811-99D9-47D8-8826-766B132AC072"></a><span class="section-number-3">14.10</span> Invalidates the project cache (if existing).&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-10">
+
+<p>
+Invalidates the project cache (if existing
+</p>
+</div>
+<div id="outline-container-sec-14-10-1" class="outline-4">
+<h4 id="sec-14-10-1"><span class="section-number-4">14.10.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-10-1">
+<p>
+C-c p i    
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14-11" class="outline-3">
+<h3 id="sec-14-11"><a id="ID-F25325FA-B974-40FF-A83C-9C9A7CD93689" name="ID-F25325FA-B974-40FF-A83C-9C9A7CD93689"></a><span class="section-number-3">14.11</span> Regenerates the projects TAGS file.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-11">
+
+<p>
+Regenerates the projects TAGS file.                               :drill
+</p>
+</div>
+<div id="outline-container-sec-14-11-1" class="outline-4">
+<h4 id="sec-14-11-1"><span class="section-number-4">14.11.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-11-1">
+<p>
+C-c p R    
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14-12" class="outline-3">
+<h3 id="sec-14-12"><a id="ID-15994BBC-E6B8-48A3-9062-A194A05C576B" name="ID-15994BBC-E6B8-48A3-9062-A194A05C576B"></a><span class="section-number-3">14.12</span> Kills all project buffers.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-12">
+
+<p>
+Kills all project buffers.                                        :drill:
+</p>
+</div>
+<div id="outline-container-sec-14-12-1" class="outline-4">
+<h4 id="sec-14-12-1"><span class="section-number-4">14.12.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-12-1">
+<p>
+C-c p k    
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14-13" class="outline-3">
+<h3 id="sec-14-13"><a id="ID-11CC9F37-6086-44B8-8933-2F9E96235C55" name="ID-11CC9F37-6086-44B8-8933-2F9E96235C55"></a><span class="section-number-3">14.13</span> Opens the root of the project in dired.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-13">
+
+<p>
+Opens the root of the project
+</p>
+</div>
+<div id="outline-container-sec-14-13-1" class="outline-4">
+<h4 id="sec-14-13-1"><span class="section-number-4">14.13.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-13-1">
+<p>
+C-c p D    
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14-14" class="outline-3">
+<h3 id="sec-14-14"><a id="ID-D6CC5AEE-C594-4AAF-9EDC-09EB51959733" name="ID-D6CC5AEE-C594-4AAF-9EDC-09EB51959733"></a><span class="section-number-3">14.14</span> Shows a list of recently visited project files.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-14">
+
+<p>
+Shows a list of recently visited
+</p>
+</div>
+<div id="outline-container-sec-14-14-1" class="outline-4">
+<h4 id="sec-14-14-1"><span class="section-number-4">14.14.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-14-1">
+<p>
+C-c p e    
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14-15" class="outline-3">
+<h3 id="sec-14-15"><a id="ID-4F9DBCBA-0655-47F8-9FDC-474F59A48FA0" name="ID-4F9DBCBA-0655-47F8-9FDC-474F59A48FA0"></a><span class="section-number-3">14.15</span> Runs ack on the project. Requires the presence of ack-and-a-half.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-15">
+
+<p>
+Runs ack on the project. Requires
+</p>
+</div>
+<div id="outline-container-sec-14-15-1" class="outline-4">
+<h4 id="sec-14-15-1"><span class="section-number-4">14.15.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-15-1">
+<p>
+C-c p a    
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14-16" class="outline-3">
+<h3 id="sec-14-16"><a id="ID-2686632B-42D0-4E7E-803D-6F0D9FA1B60E" name="ID-2686632B-42D0-4E7E-803D-6F0D9FA1B60E"></a><span class="section-number-3">14.16</span> Runs a standard compilation command for your type of project.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-16">
+
+<p>
+Runs a standard compilation command for
+</p>
+</div>
+<div id="outline-container-sec-14-16-1" class="outline-4">
+<h4 id="sec-14-16-1"><span class="section-number-4">14.16.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-16-1">
+<p>
+C-c p c    
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14-17" class="outline-3">
+<h3 id="sec-14-17"><a id="ID-C71DD93C-2388-4DDC-AFBD-E5F9FB421295" name="ID-C71DD93C-2388-4DDC-AFBD-E5F9FB421295"></a><span class="section-number-3">14.17</span> Runs a standard test command for your type of project.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-17">
+
+<p>
+Runs a standard test command for
+</p>
+</div>
+<div id="outline-container-sec-14-17-1" class="outline-4">
+<h4 id="sec-14-17-1"><span class="section-number-4">14.17.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-17-1">
+<p>
+C-c p p    
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14-18" class="outline-3">
+<h3 id="sec-14-18"><a id="ID-92AFC70B-B994-447A-ADFB-A1EEBE8A2FD4" name="ID-92AFC70B-B994-447A-ADFB-A1EEBE8A2FD4"></a><span class="section-number-3">14.18</span> Adds the currently visited to the cache.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-18">
+
+<p>
+Adds the currently visited to the
+</p>
+</div>
+<div id="outline-container-sec-14-18-1" class="outline-4">
+<h4 id="sec-14-18-1"><span class="section-number-4">14.18.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-18-1">
+<p>
+C-c p z    
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-14-19" class="outline-3">
+<h3 id="sec-14-19"><a id="ID-CF469E3F-85C4-4D1B-8D61-C4DB48D00F62" name="ID-CF469E3F-85C4-4D1B-8D61-C4DB48D00F62"></a><span class="section-number-3">14.19</span> Display a list of known projects you can switch to.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-14-19">
+
+<p>
+Display a list of known projects you can switch to. 
+</p>
+</div>
+<div id="outline-container-sec-14-19-1" class="outline-4">
+<h4 id="sec-14-19-1"><span class="section-number-4">14.19.1</span> Answer</h4>
+<div class="outline-text-4" id="text-14-19-1">
+<p>
+C-c p s
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-15" class="outline-2">
+<h2 id="sec-15"><span class="section-number-2">15</span> Extending, Customizing: Finding+Installing packages</h2>
+<div class="outline-text-2" id="text-15">
+</div><div id="outline-container-sec-15-1" class="outline-3">
+<h3 id="sec-15-1"><span class="section-number-3">15.1</span> How to download packages from existing emacs repositories&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-15-1">
+<p>
+There are several repositories: gnu, marmalade, elpa are listed here: 
+<a href="http://www.emacswiki.org/emacs/ELPA">http://www.emacswiki.org/emacs/ELPA</a>
+</p>
+
+<p>
+To use all 3, run this
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-elisp">(setq package-archives '((<span style="color: #259185;">"gnu"</span> . <span style="color: #259185;">"http://elpa.gnu.org/packages/"</span>)
+                         (<span style="color: #259185;">"marmalade"</span> . <span style="color: #259185;">"http://marmalade-repo.org/packages/"</span>)
+                         (<span style="color: #259185;">"melpa"</span> . <span style="color: #259185;">"http://melpa.milkbox.net/packages/"</span>)))
+</pre>
+</div>
+
+<p>
+But how to install packages from them?  See answer: 
+</p>
+</div>
+
+<div id="outline-container-sec-15-1-1" class="outline-4">
+<h4 id="sec-15-1-1"><span class="section-number-4">15.1.1</span> Answer</h4>
+<div class="outline-text-4" id="text-15-1-1">
+<p>
+Run command: list-packages. 
+Then browse or search for the package you need, and click on its name.  Info is shown in a separate buffer, including a button for installing the package.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-16" class="outline-2">
+<h2 id="sec-16"><span class="section-number-2">16</span> Drills / Learning</h2>
+<div class="outline-text-2" id="text-16">
+</div><div id="outline-container-sec-16-1" class="outline-3">
+<h3 id="sec-16-1"><a id="ID-CC61743F-7E87-4BBB-929C-B3D358442E65" name="ID-CC61743F-7E87-4BBB-929C-B3D358442E65"></a><span class="section-number-3">16.1</span> Force review of all cards&#xa0;&#xa0;&#xa0;<span class="tag"><span class="drill">drill</span></span></h3>
+<div class="outline-text-3" id="text-16-1">
+
+<p>
+Force review of all cards. 
+</p>
+</div>
+<div id="outline-container-sec-16-1-1" class="outline-4">
+<h4 id="sec-16-1-1"><span class="section-number-4">16.1.1</span> Answer</h4>
+<div class="outline-text-4" id="text-16-1-1">
+<p>
+<a href="http://orgmode.org/worg/org-contrib/org-drill.html">http://orgmode.org/worg/org-contrib/org-drill.html</a>
+</p>
+<blockquote>
+<p>
+There are some situations, such as before an exam, where you will want to revise all of your cards regardless of when they are next due for review.
+</p>
+
+<p>
+To do this, run a cram session with the org-drill-cram command (M-x org-drill-cram RET). This works the same as a normal drill session, except that all items are considered due for review unless you reviewed them within the last 12 hours (you can change the number of hours by customising the variable org-drill-cram-hours).
+</p>
+</blockquote>
+
+<div class="org-src-container">
+
+<pre class="src src-elisp">(setq org-drill-cram-hours 0)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: I Z</p>
+<p class="date">Created: 2013-12-11 Wed 17:42</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.0.7)</p>
+<p class="xhtml-validation"><a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a></p>
+</div>
+</body>
+</html>
